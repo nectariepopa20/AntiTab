@@ -15,14 +15,15 @@ public class AntiTab extends JavaPlugin {
     private ProtocolManager protocolManager;
 
     @Override
-    public void onLoad() {
+    public void onEnable() {
         this.protocolManager = ProtocolLibrary.getProtocolManager();
-        this.protocolManager.addPacketListener((PacketListener) new PacketAdapter((Plugin) this, ListenerPriority.NORMAL, PacketType.Play.Server.TAB_COMPLETE) {
+        this.protocolManager.addPacketListener((PacketListener) new PacketAdapter((Plugin) this, ListenerPriority.LOWEST, PacketType.Play.Server.TAB_COMPLETE) {
             @Override
             public void onPacketSending(PacketEvent event) {
-                if (!event.getPlayer().isOp()) {
-                    event.setCancelled(true);
+                if (event.getPlayer().isOp()) {
+                    return;
                 }
+                event.setCancelled(true);
             }
         });
     }
