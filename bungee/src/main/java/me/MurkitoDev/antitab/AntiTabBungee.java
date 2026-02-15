@@ -20,8 +20,8 @@ public class AntiTabBungee extends Plugin implements Listener {
         return player != null && !player.hasPermission(BYPASS_PERMISSION);
     }
 
-    /** Proxy-side tab complete (e.g. /server, /bungee, /&lt;tab&gt;, /co&lt;tab&gt;) */
-    @EventHandler
+    /** Proxy-side tab complete (e.g. /server, /bungee, /&lt;tab&gt;, /co&lt;tab&gt;) — run last so we clear after Bungee populates */
+    @EventHandler(priority = 0) // LOWEST: run last
     public void onTabComplete(TabCompleteEvent event) {
         if (event.getSender() instanceof ProxiedPlayer) {
             ProxiedPlayer player = (ProxiedPlayer) event.getSender();
@@ -32,8 +32,8 @@ public class AntiTabBungee extends Plugin implements Listener {
         }
     }
 
-    /** Backend server tab complete response */
-    @EventHandler
+    /** Backend server tab complete response — run last */
+    @EventHandler(priority = 0) // LOWEST: run last
     public void onTabCompleteResponse(TabCompleteResponseEvent event) {
         if (event.getReceiver() instanceof ProxiedPlayer) {
             ProxiedPlayer player = (ProxiedPlayer) event.getReceiver();

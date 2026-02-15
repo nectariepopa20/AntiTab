@@ -1,30 +1,38 @@
 package me.MurkitoDev.antitab;
 
-import com.comphenix.protocol.PacketType;
-import com.comphenix.protocol.ProtocolLibrary;
-import com.comphenix.protocol.ProtocolManager;
-import com.comphenix.protocol.events.ListenerPriority;
-import com.comphenix.protocol.events.PacketAdapter;
-import com.comphenix.protocol.events.PacketEvent;
-import com.comphenix.protocol.events.PacketListener;
-import org.bukkit.plugin.Plugin;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerCommandSendEvent;
+import org.bukkit.event.server.TabCompleteEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class AntiTab extends JavaPlugin {
+import java.util.Collections;
 
-    private ProtocolManager protocolManager;
+public class AntiTab extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
-        this.protocolManager = ProtocolLibrary.getProtocolManager();
-        this.protocolManager.addPacketListener((PacketListener) new PacketAdapter((Plugin) this, ListenerPriority.LOWEST, PacketType.Play.Server.TAB_COMPLETE) {
-            @Override
-            public void onPacketSending(PacketEvent event) {
-                if (event.getPlayer().isOp()) {
-                    return;
-                }
-                event.setCancelled(true);
+        getServer().getPluginManager().registerEvents(this, this);
+    }
+
+    /** Blocks /<tab> (command list) for non-ops */
+    @EventHandler(priority = EventPriority.LOWEST)
+    public void onPlayerCommandSend(PlayerCommandSendEvent event) {
+        if (!event.getPlayer().isOp()) {
+            event.getCommands().clear();
+        }
+    }
+
+    /** Blocks /command <tab> and /co<tab> (argument completions) for non-ops */
+    @EventHandler(priority = EventPriority.LOWEST)
+    public void onTabComplete(TabCompleteEvent event) {
+        if (event.getSender() instanceof Player) {
+            Player player = (Player) event.getSender();
+            if (!player.isOp()) {
+                event.setCompletions(Collections.emptyList());
             }
-        });
+        }
     }
 }

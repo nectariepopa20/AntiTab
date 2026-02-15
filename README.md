@@ -6,7 +6,7 @@ Blocks tab completion for non-op players (Spigot) or players without bypass perm
 
 See [Releases](https://github.com/nectariepopa20/AntiTab/releases) for compiled JARs.
 
-- **AntiTab-Spigot.jar** — Spigot 1.21.11, requires [ProtocolLib](https://www.spigotmc.org/resources/protocollib.1997/).
+- **AntiTab-Spigot.jar** — Spigot 1.21.11, no dependencies.
 - **AntiTab-Bungee.jar** — BungeeCord 1.21, no dependencies.
 
 ## Spigot
@@ -15,7 +15,7 @@ You could set `tab-complete: -1` in **spigot.yml** to disable tab completion for
 
 - **Ops:** tab complete works (`/<tab>`, `/command <tab>`, etc.).
 - **Non-ops:** no tab complete.
-- Put the JAR in `plugins/` and install [ProtocolLib](https://www.spigotmc.org/resources/protocollib.1997/).
+- Put the JAR in `plugins/`. No other plugins required.
 
 ## BungeeCord
 

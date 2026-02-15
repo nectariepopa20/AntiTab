@@ -14,7 +14,7 @@
     <artifactId>antitab-spigot</artifactId>
     <packaging>jar</packaging>
     <name>AntiTab Spigot</name>
-    <description>AntiTab - Protects from tab completion on Spigot (ProtocolLib)</description>
+    <description>AntiTab - Protects from tab completion on Spigot</description>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -34,12 +34,6 @@
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
             <version>1.21.11-R0.2-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.dmulloy2</groupId>
-            <artifactId>ProtocolLib</artifactId>
-            <version>5.4.0</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
