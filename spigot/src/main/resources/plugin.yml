@@ -1,0 +1,6 @@
+name: AntiTab
+main: me.MurkitoDev.antitab.AntiTab
+author: MurkitoDev
+version: 1.2
+description: This plugin protects from tab completion!
+depend: [ProtocolLib]

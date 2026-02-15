@@ -1,0 +1,5 @@
+name: AntiTab
+main: me.MurkitoDev.antitab.AntiTabBungee
+version: 1.2
+author: MurkitoDev
+description: Protects from tab completion on BungeeCord!
